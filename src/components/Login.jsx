@@ -40,15 +40,15 @@ class Login extends React.Component{
         axios.post(url, this.state.form)
         .then(response =>{
             if(response.status === 200){
-                //if (this.state.form.email == "eve.holt@reqres.in" && this.state.form.passwoard == "cityslicka"){
+                if (this.state.form.email == "eve.holt@reqres.in" && this.state.form.password == "cityslicka"){
                     localStorage.setItem("token", response.data.token);
                     this.props.history.push("/dashboard");
-                //}else{
-                   /* this.setState({
+                }else{
+                    this.setState({
                         error : true,
                         errorMsg : "Usuario/Contraseña incorrectos"
-                    });*/
-                //}
+                    });
+                }
                 
             }else {
                 this.setState({
