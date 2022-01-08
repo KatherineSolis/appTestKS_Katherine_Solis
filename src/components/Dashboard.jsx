@@ -28,7 +28,16 @@ class Dashboard extends React.Component{
        }
 
        eliminarUsuario(id){
-        console.log("eliminar: " +id);
+        let url = Apiurl + "users/"+id;
+        let datos = {
+            "token": localStorage.getItem("token"),
+            "usuarioId": id,
+        }
+        axios.delete(url,{headers:datos})
+        .then( response => {
+            this.props.history.push("/dashboard");
+        })
+        console.log("Eliminar: "+id);
        }
 
     render(){

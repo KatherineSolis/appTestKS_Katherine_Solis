@@ -60,17 +60,19 @@ class Editar extends React.Component{
         })
     }
 
-    /*delete =()=>{
+    delete =()=>{
         let usuarioId = this.props.match.params.id;
         let url = Apiurl + "users/"+usuarioId;
         let datos = {
-            "token": 
+            "token": localStorage.getItem("token"),
+            "usuarioId": usuarioId,
         }
-        axios.delete(url,this.state.form)
+        axios.delete(url,{headers:datos})
         .then( response => {
-            console.log(response)
+            this.props.history.push("/dashboard");
         })
-    }*/
+        console.log("Eliminar: "+ usuarioId);
+    }
 
     render(){
         const form = this.state.form;
@@ -109,7 +111,7 @@ class Editar extends React.Component{
                         <br />
                         <br />
                         <button type="submit" className="btn btn-primary" onClick= {()=>this.put()} >Editar</button>
-                        <button type="submit" className="btn btn-danger">Eliminar</button> 
+                        <button type="submit" className="btn btn-danger" onClick= {()=>this.delete()}>Eliminar</button> 
                         <a href="/dashboard" className="btn btn-success">Regresar</a>                        
                     </form>
                 </div>
